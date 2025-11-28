@@ -1,0 +1,268 @@
+.home {
+    background-color: #f1efef;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.home h2 {
+    font-size: 3rem;
+    margin-left: 1em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.home p {
+    font-size: 1.5em;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.cards{
+    display: flex;
+    gap: 2rem;
+    margin-left: 2.5rem;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    width: 33rem;
+    height: 14rem;
+}
+
+.card p {
+    margin-top: 2.3em;
+    font-size: 1.5rem;
+    color: rgb(67, 67, 70);
+}
+
+.info_card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info_card aside {
+    font-size: 1.5em;
+}
+
+.icon {
+    color: #858585;
+    width: 4em;
+    height: auto;
+    background-color: #eeeaea;
+    border-radius: 20%;
+    padding: 0.4rem;
+}
+
+
+
+
+
+.tareasCard {
+    background-color: white;
+    border-radius: 2%;
+    margin: 2.5em;
+    margin-top: 1.5em;
+    width: 60rem;
+    height: auto;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+}
+.listas :hover {
+    background-color: var(--gray);
+}
+
+.tareasCard_title {
+    font-size: 1.2em;
+    padding-top: 0.2em;
+}
+
+.textCard {
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    align-items: center;
+    border-bottom: 2px solid #858585;
+}
+
+.textCard_options :hover {
+    background-color: var(--gray-claro);
+    border-radius: 0.5rem;
+}
+
+.contenedorTareas {
+    display: flex;
+}
+
+.tarea {
+    display: flex;
+    gap: 2em;
+    margin: 1em;
+    background-color: var(--gray-claro);
+    padding: 10px;
+    border-radius: 1em;
+    height: 8rem;
+}
+
+.tareas_check {
+    margin-left: 1rem;
+    display: flex;
+}
+
+.tareas_check input {
+    width: 20px;
+    height: auto;
+}
+
+.info h4 {
+    margin-top: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+}
+
+.info p {
+    margin-left: 0%;
+    font-size: 1.4em;
+    color: var(--text3-color);
+    width: 45rem;
+}
+
+.tareasHora span {
+    display: block;
+    margin-top: 1em;
+}
+
+
+
+.container_reminders {
+    background-color: white;
+    border-radius: 2%;
+    display: flex;
+}
+
+.card_recordatorio :hover {
+    background-color: var(--gray);
+}
+
+.recordatorioCard {
+    display: flex;
+    gap: 2em;
+    margin: 1em;
+    background-color: var(--gray-claro);
+    padding: 10px;
+    border-radius: 1em;
+    width: 38rem;
+    height: 8rem;
+}
+
+.reminders_icon :hover {
+    background-color: var(--gray-claro);
+    border-radius: 0.5rem;
+}
+
+.reminders_icon {
+    margin-left: 1rem;
+    display: flex;
+}
+
+.recordatori_info p {
+    margin-left: 0%;
+    font-size: 1.2em;
+    color: var(--text3-color);
+}
+
+.recordatori_info h4 {
+    margin-top: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+}
+
+
+
+
+.container_event {
+    gap: 4rem;
+    background-color: white;
+    border-radius: 1rem;
+    margin-left: 2rem;
+}
+
+.upcoming_events {
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem;
+    
+}
+
+.eventsCard {
+    display: flex;
+    margin: 1em;
+    justify-content: space-between;
+    border-bottom: 2px solid #858585;
+    padding: 1em;
+}
+
+.eventtCard {
+    background-color: var(--gray-claro);
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 13.5rem;
+    width: 28rem;
+    border-left: 4px solid var(--gray);
+}
+
+.eventIcon {
+    display: flex;
+    gap: 1rem;
+    font-size: small;
+    margin-left: 1rem;
+    color: var(--text3-color);
+}
+
+.eventInfo{
+    margin-top: 1rem;
+        margin-left: 1rem;
+}
+
+.eventInfo h4 {
+    font-size: 1.5em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.eventInfo small {
+    font-size: 1rem;
+}
+
+.eventInfo p {
+    font-size: small;
+    margin-left: 0%;
+    color: var(--text3-color);
+}
+
+.eventsCard_icon {
+    margin-left: 1rem;
+    display: flex;
+    margin-top: 1.8rem;
+}
+
+.max_container {
+    width: 100%;
+    height: 15rem;
+}
+
+
+
+
+
+.scrollContent {
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 10px;
+    padding-bottom: 2rem;
+}
