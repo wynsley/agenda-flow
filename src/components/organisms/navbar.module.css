@@ -6,10 +6,28 @@
   justify-content: space-between;
   border-right: 2px solid var(--line);
   height: 100vh;   
-  position: sticky;    
   width: 100%;     
-  position: relative; 
   box-sizing: border-box;
-  overflow: hidden;
   padding-bottom: 15em;
+  background: white;
+  position: sticky;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* MÓVIL */
+@media (max-width: 768px) {
+  .navbar {
+    position: fixed;
+    top: 8em;
+    left: 0;
+    transform: translateX(-100%); /* OCULTO */
+    width: 25em;
+    z-index: 100;
+    background: white;
+  }
+
+  .open {
+    transform: translateX(0); /* VISIBLE */
+  }
 }

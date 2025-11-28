@@ -11,7 +11,9 @@ import { StatisticsPage } from './components/pages/statisticsPage'
 import { SettingsPage } from './components/pages/settingsPage'
 import { HelpPage } from './components/pages/helpPage'
 import { ProfilePage } from './components/pages/profilePage'
-
+import { Register } from './components/organisms/modaRegister'
+import { Login } from './components/organisms/modalLogin'
+import { Notifications } from './components/organisms/modalNotifications'
 
 //STYLES
 import './App.css'
@@ -19,6 +21,9 @@ import { useState } from 'react'
 
 function App() {
   const [modalIsOpen, setModalIsOpen]= useState (false)
+  const [ notifyOpen , setNotifyOpen] = useState(false)
+  const [modalRegisterOpen, setModalRegisterOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false);
 
   const pages =[
     {
@@ -57,9 +62,11 @@ function App() {
 
   return (
     <div className='layout'>
-      <Navbar/>
-      <Header/>
-      {modalIsOpen ? <ModalLogin setModalIsOpen={setModalIsOpen} /> : ''}
+      <Navbar navOpen={navOpen} setNavOpen={setNavOpen}/>
+      <Header setNavOpen={setNavOpen} setModalIsOpen={setModalIsOpen} setNotifyOpen={setNotifyOpen}/>
+      {modalIsOpen ? <Login setModalIsOpen={setModalIsOpen} setModalRegisterOpen={setModalRegisterOpen} /> : ''}
+      {notifyOpen ? <Notifications setNotifyOpen={setNotifyOpen} /> : ''}
+      {modalRegisterOpen? <Register setModalRegisterOpen={setModalRegisterOpen}/> : ''}
       <MyTemplate>
         <Routes>
           {

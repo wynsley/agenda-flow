@@ -9,7 +9,7 @@
     font-weight: 400;
 }
 @font-face {
-    font-family: "Michroma";
+    font-family: "Michi";
     src: url(/src/assets/fonts/Michroma.woff2) format("woff2");
     font-style: normal;
     font-weight: 900;
@@ -41,9 +41,10 @@
     --text3-color: #504e4e;
     --gray: #a1a1a1 ;
     --gray-claro: #dcdcdc53;
-    --line:#e5e7eb;
+    --line:oklch(0.94 0 0);
     --black:#000000;
     --white:#ffffff;
+    --bg-color:#f9fafb;
     --hover-color:#0f202a;
     --ski-blue-1:#2fb7d8;
     --card-border:#0f364a;

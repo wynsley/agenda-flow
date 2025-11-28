@@ -1,7 +1,8 @@
 import styles from './paragraph.module.css';
 
 function Paragraph ({ 
-  children, 
+  children,
+  text, 
   className = '',
   size = 'medium',       
   variant = 'default',    
@@ -17,7 +18,7 @@ function Paragraph ({
       className={`${styles.paragraph} ${sizeClass} ${variantClass} ${alignClass} ${className}`}
       {...props}
     >
-      {children}
+      {children || text}
     </p>
   );
 };

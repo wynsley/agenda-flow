@@ -1,0 +1,19 @@
+.containerMarcar{
+  display: flex;
+  padding:2em;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom:1px solid var(--line) ;
+}
+.marcar{
+  font-size: 1.2em;
+  background: transparent;
+  color: var(--gray);
+  transition: .3s all;
+  cursor: pointer;
+
+}
+
+.marcar:hover{
+  color: var(--color-blue);
+}

@@ -3,6 +3,7 @@ import styles from './titles.module.css'
 function Title ({
   level= 'h1',
   children,
+  text,
   className='',
   variant = 'default',
   align ='left',
@@ -20,7 +21,7 @@ function Title ({
           className={`${styles.title} ${variantClass} ${alignClass} ${className}`}
           {...props}
         >
-        {children}
+        {children || text}
         </Tag>
       )
   }

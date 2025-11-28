@@ -7,4 +7,33 @@
   padding: 0 3em;
   border-bottom: 2px solid var(--line);
   position: sticky;
+  height: 7em;
+}
+
+/* BOTÓN HAMBURGUESA — OCULTO POR DEFECTO */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* MOSTRAR SOLO EN MÓVIL */
+@media (max-width: 768px) {
+  .header{
+    height: 8em;
+    position: fixed;
+    background-color: var(--white);
+    width: 100%;
+  }
+  .hamburger {
+    display: block;
+    z-index: 9999;
+  }
+}
+
+@media(max-width: 480px){
+  .header{
+    padding: 0 1.5em;
+  }
 }

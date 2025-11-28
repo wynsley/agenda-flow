@@ -1,21 +1,28 @@
 import { Bell } from 'lucide-react'
 import styles from './headerUser.module.css'
+import { Button } from '../atoms/button'
 
+function HeaderUser({ setModalIsOpen, setNotifyOpen }) {
+  const handleClick = () => {
+    setModalIsOpen(true)
+  }
 
-function HeaderUser({ setModalIsOpen }) {
+  const handleCli =() =>{
+    setNotifyOpen(true)
+  }
+  
   return (
     <div className={styles.login}>
       <span className={styles.containnerIcon}>
-        <Bell className={styles.notifications} size={'25px'} />
+        <Bell className={styles.notifications}onClick={handleCli}/>
       </span>
       <span className={styles.separator}></span>
-      <button
-        onClick={setModalIsOpen}
-        className={styles.button}
-      >
-        Iniciar Sesión
-      </button>
-
+      <Button
+        onClick={handleClick}
+        type='submit'
+        variant='secondary'
+        text={'Iniciar Sesión'}
+      />
     </div>
   )
 }

@@ -1,6 +1,14 @@
 .template {
   grid-column: 2;
   grid-row: 2;
-  padding: 1em;
   color: var(--text-color);
+  background: var(--bg-color);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media(max-width: 768px){
+  .template{
+    padding-top: 6em;
+  }
 }

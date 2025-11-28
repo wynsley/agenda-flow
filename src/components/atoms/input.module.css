@@ -1,0 +1,75 @@
+.input {
+  width: 100%;
+}
+
+/*
+  Font to text
+*/
+.small {
+  font-size: 1.2rem;
+}
+
+.medium {
+  font-size: 1.5rem;
+}
+
+.large {
+  font-size: 1.8rem;
+}
+
+/*
+  variantes of Style
+*/
+
+.default {
+  width: 100%;
+  background-color: var(--line);
+  padding: 0.9em 1em;
+  border-radius: 8px;
+  border: 1.5px solid var(--input-border, rgba(0, 0, 0, 0.1));
+  font-size: 0.95em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.default:hover {
+  border-color: var(--card-border);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.default:focus {
+  border-color: var(--color-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: #fff;
+}
+
+.default::placeholder {
+  color: #9ca3af;
+  font-size: 0.9em;
+}
+
+.secondary {
+  border-bottom: 1px solid var(--line);
+  padding: 0 1em;
+}
+
+
+.muted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Alineación */
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
