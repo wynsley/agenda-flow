@@ -79,7 +79,7 @@ function Register({setModalRegisterOpen}) {
         className={styles.btnRegister}
           text={'Registrarse'}
           variant='secondary'
-          onClick={hadleClosed}
+          type='submit'
         />
       </form>
     </div>

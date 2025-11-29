@@ -4,7 +4,7 @@ import { Select } from '../atoms/select'
 import styles from './formItem.module.css'
 
 function FormItem({ 
-  formFields, onChange,
+  formFields,
   inputVariant = 'secondary',
   inputAlign = 'left',
   inputSize = 'large',
@@ -14,11 +14,11 @@ function FormItem({
   return (
     <>
     {
-      formFields .map((item, i) => {
+      formFields.map((item, i) => {
         return (
           <div key={i} className={styles.formItem}>
             <Label
-              align='lef'
+              align='left'
               size='small'
               text={item.text}
               htmlFor={item.htmlFor}
@@ -30,7 +30,7 @@ function FormItem({
                 name={item.name}
                 value={item.value}
                 options={item.options}
-                onChange={onChange}
+                onChange={item.onChange}
               />
             ):(
               <Input
@@ -39,8 +39,9 @@ function FormItem({
                 size={inputSize}
                 type={item.type}
                 name={item.name}
+                value={item.value}  
                 placeholder={item.placeholder}
-                onChange={onChange}
+                onChange={item.onChange} 
               />
             )}
           </div>

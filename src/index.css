@@ -36,9 +36,6 @@
 
 :root{
     /*Colors text and cards*/
-    --text-color:#000000;
-    --text2-color: #0c131f;
-    --text3-color: #504e4e;
     --gray: #a1a1a1 ;
     --gray-claro: #dcdcdc53;
     --line:oklch(0.94 0 0);
@@ -46,8 +43,7 @@
     --white:#ffffff;
     --bg-color:#f9fafb;
     --hover-color:#0f202a;
-    --ski-blue-1:#2fb7d8;
-    --card-border:#0f364a;
+    --card-border:#114c6a;
     --card-color:#0f3141;
     
     /*hovers*/

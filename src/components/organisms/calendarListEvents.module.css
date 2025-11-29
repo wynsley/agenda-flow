@@ -1,0 +1,161 @@
+.upcomingEvent{
+  grid-column: 1/4;
+  grid-row: 3;
+  border: 1px solid var(--line);
+  background-color: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* LISTA DE TODOS LOS EVENTOS */
+
+.listaEventosWrapper {
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  min-height: 0; /* Importante para que funcione flex con overflow */
+}
+
+.eventosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  flex: 1;
+  overflow-y: auto; /* Scroll vertical */
+  overflow-x: hidden; /* Sin scroll horizontal */
+  min-height: 0; /* Importante para que funcione el scroll */
+  padding-right: 0.5rem; /* Espacio para la scrollbar */
+}
+
+/* Estilo personalizado para la scrollbar de eventos grid */
+.eventosGrid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.eventosGrid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.eventosGrid::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.eventosGrid::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.eventoCard {
+  background-color: var(--bg-color);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  transition: all 0.2s;
+  height: fit-content;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.eventoCard:hover {
+  transform: translateY(-2px);
+}
+
+.btnEliminar {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: none;
+  background: transparent;
+  color: #ef4444;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnEliminar:hover {
+  background: #fee2e2;
+}
+
+.eventoDetalles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+.infoItem{
+  display: flex;
+  gap: .5em;
+}
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.badgeCapacitación {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.badgeReunión {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badgePresentación {
+  background: #e9d5ff;
+  color: #6b21a8;
+}
+
+.badgeSocial {
+  background: #fce7f3;
+  color: #9f1239;
+}
+
+.badgeTrabajo {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+@media(max-width: 900px){
+  .upcomingEvent {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    height: auto;
+    min-height: 20em;
+    max-height: 40em;
+  }
+  .eventosGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .listaEventosWrapper {
+    height: 100%;
+    max-height: 100%;
+  }
+  
+}
+
+@media(max-width: 420px){
+  .eventosGrid {
+    grid-template-columns: 1fr;
+  }
+}

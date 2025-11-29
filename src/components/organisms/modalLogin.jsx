@@ -77,8 +77,7 @@ function Login({ setModalIsOpen, setModalRegisterOpen }) {
               inputAlign="left"
             />
             <Button
-              onClick={handleClose}
-              type={'button'}
+              type='submit'
               variant='secondary'
               text={'Enviar'}
             />

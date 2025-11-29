@@ -25,65 +25,48 @@
   padding: 1em ;
   font-size: 1.5em;
 }
-
-/*
-  GRID CALENDAR
-*/
-
+/*contenedor del Grid*/
 .containerCalendar{
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 2em;
 }
 
-.ContCalendar{
-  grid-column: 1/3;
-  grid-row: 1/4;
-  border: 1px solid var(--line);
-  height: 60em;
-  border-radius: 10px;
-  background-color: var(--white);
+
+
+
+/* RESPONSIVE */
+
+/* Tablets grandes y pantallas medianas - mantener grid hasta 1100px */
+@media(max-width: 1100px) and (min-width: 901px){
+  .calendar {
+    padding: 2em;
+  }
+  /* Reducir gap entre elementos */
+  .containerCalendar{
+    gap: 1.5em;
+  }
+  
 }
 
-.listEvents{
-  grid-column: 3;
-  grid-row: 1/4;
-  border: 1px solid var(--line);
-  background-color: var(--white);
-  border-radius: 10px;
-
-}
-
-.upcomingEvent{
-  grid-column: 1/4;
-  grid-row: 4;
-  border: 1px solid var(--line);
-  background-color: var(--white);
-  border-radius: 10px;
-
-}
-
-@media(max-width: 768px){
-  @media(max-width: 768px){
+/* Tablets - cambiar a layout vertical desde 900px */
+@media(max-width: 900px){
   .containerCalendar{
     display: flex;
     flex-direction: column;
     gap: 2em;
-  }
-
-  /* IMPORTANTE: limpiar grid de los hijos */
-  .ContCalendar,
-  .listEvents,
-  .upcomingEvent {
-    grid-column: auto;
-    grid-row: auto;
-    width: 100%;
-    height: 30em; /* opcional si quieres que se ajusten */
-  }
+  } 
 }
 
+/* RESPONSIVE MÓVILES PEQUEÑOS - 1 COLUMNA */
+@media(max-width: 420px){
+  .listaEventosDia {
+    grid-template-columns: 1fr;
+  }
+  .containerTitles{
+    gap: 0.5em;
+  }
+  
 }
-
-

@@ -1,4 +1,4 @@
-.bgCont {
+.newTask {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,13 +12,13 @@
   padding: 8em 1em 0 0;
 }
 
-.bgCont.closing{
+.newTask.closing{
   animation: fadeOut .4s ease-in-out;
 }
 
 .form{
   position: relative;
-  height: 56em;
+  height: 51em;
   width: 38em;
   background-color: var(--white);
   animation: slideIn .4s ease-in-out;

@@ -7,7 +7,7 @@
 
 /* Tamaños */
 .small {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .medium {
@@ -59,7 +59,7 @@
     font-size: 2rem;
   }
   .medium {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -70,7 +70,7 @@
   }
 
   .medium {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 
   .large {

@@ -1,0 +1,486 @@
+.tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  padding: 3em;
+  gap: 2em;
+  min-height: 100vh;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.containerTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.btnTasks {
+  padding: 1em;
+  font-size: 1.5em;
+}
+
+
+/* Tabs y Filtros */
+.tabsContainer {
+  width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tabsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.8em;
+}
+
+.tab {
+  padding: 0.8em 1.8em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.tab.active {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.tab:hover:not(.active) {
+  background-color: #e0e0e0;
+}
+
+.btnFilters {
+  padding: 0.8em 1.5em;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: all 0.3s ease;
+}
+
+.btnFilters:hover {
+  background-color: #e0e0e0;
+}
+
+/* Panel de Filtros */
+.filtersPanel {
+  margin-top: 1.5em;
+  padding-top: 1.5em;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  gap: 1.5em;
+}
+
+.filterGroup {
+  flex: 1;
+}
+
+.filterGroup label {
+  display: block;
+  font-size: 1em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5em;
+}
+
+.filterGroup select {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: white;
+}
+
+.filterGroup select:focus {
+  outline: none;
+  border-color: #1a1a1a;
+}
+
+/* Contenedor de la lista de tareas con altura mínima */
+.tasksListContainer {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Lista de Tareas en Grid */
+.tasksList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5em;
+}
+
+.taskCard {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.8em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+.taskCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.taskContent {
+  display: flex;
+  align-items: start;
+  gap: 1.2em;
+}
+
+.taskCheckbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.3em;
+  cursor: pointer;
+}
+
+.taskInfo {
+  flex: 1;
+}
+
+.taskTitle {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.4em;
+}
+
+.taskTitle.completed {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.taskDescription {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 1em;
+}
+
+.taskDescription.completed {
+  color: #999;
+}
+
+.taskMeta {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.taskHour {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 1em;
+  color: #666;
+}
+
+.taskCategory {
+  padding: 0.5em 1em;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 20px;
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+.taskPriority {
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+.priority-alta {
+  background-color: #7f1d1d;
+  color: #fecaca;
+}
+
+.priority-media {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.priority-baja {
+  background-color: #1e3a8a;
+  color: #bfdbfe;
+}
+
+.taskMenu {
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s ease;
+  font-size: 1.5em;
+}
+
+.taskMenu:hover {
+  color: #666;
+}
+
+/* Empty state ocupa todo el grid */
+.emptyState {
+  grid-column: 1 / -1;
+  width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  padding: 4em 2em;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.emptyState p {
+  font-size: 1.2em;
+  color: #999;
+}
+
+/* Panel de Estadísticas */
+.statsContainer {
+  width: 100%;
+  display: flex;
+  gap: 1.5em;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.statCard {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5em;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.statInfo h3 {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+.statInfo p {
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.statCard.pending .statInfo p {
+  color: #ea580c;
+}
+
+.statCard.completed .statInfo p {
+  color: #16a34a;
+}
+
+.statCard.total .statInfo p {
+  color: #2563eb;
+}
+
+.statIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8em;
+}
+
+.statCard.pending .statIcon {
+  background-color: #fed7aa;
+  color: #ea580c;
+}
+
+.statCard.completed .statIcon {
+  background-color: #bbf7d0;
+  color: #16a34a;
+}
+
+.statCard.total .statIcon {
+  background-color: #bfdbfe;
+  color: #2563eb;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2.5em;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modalTitle {
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2em;
+  color: #1a1a1a;
+}
+
+.formGroup {
+  margin-bottom: 1.5em;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 1em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5em;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 0.8em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: inherit;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #1a1a1a;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.modalButtons button {
+  flex: 1;
+  padding: 1em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnCancel {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.btnCancel:hover {
+  background-color: #e0e0e0;
+}
+
+.btnCreate {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.btnCreate:hover {
+  background-color: #333;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .tasksList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .tasks {
+    padding: 1.5em;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: start;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tabsHeader {
+    flex-direction: column;
+    gap: 1em;
+    align-items: start;
+  }
+
+  .filtersPanel {
+    flex-direction: column;
+  }
+
+  .statsContainer {
+    flex-direction: column;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+  }
+}
