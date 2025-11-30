@@ -5,6 +5,8 @@ import { Title } from '../atoms/titles'
 import { MyTemplate } from '../templates/myTemplate'
 import styles from './tanksPage.module.css'
 import { ModalNewTask } from '../organisms/modalNewTask'
+import { Select } from '../atoms/select'
+import { EllipsisVertical } from 'lucide-react'
 
 function TanksPage() {
   const [tasks, setTasks] = useState([
@@ -40,6 +42,8 @@ function TanksPage() {
   const [newTaskOpen, setNewTaskOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('hoy')
   const [showFilters, setShowFilters] = useState(false)
+  const [taskMenuOpen, setTaskMenuOpen] = useState(null)
+  const [editingTask, setEditingTask] = useState(null)
   const [filters, setFilters] = useState({
     priority: 'all',
     category: 'all'
@@ -60,13 +64,40 @@ function TanksPage() {
   }
 
   const toggleTask = (id) => {
-    setTasks(tasks.map(task => 
+    setTasks(tasks.map(task =>
       task.id === id ? { ...task, completed: !task.completed } : task
     ))
   }
 
   const deleteTask = (id) => {
     setTasks(tasks.filter(task => task.id !== id))
+    setTaskMenuOpen(null)
+  }
+
+  const editTask = (updatedTask) => {
+    setTasks(tasks.map(task =>
+      task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+    ))
+    setEditingTask(null)
+  }
+
+  const handleMenuToggle = (id, e) => {
+    e.stopPropagation()
+    setTaskMenuOpen(taskMenuOpen === id ? null : id)
+  }
+
+  const handleEditClick = (task, e) => {
+    e.stopPropagation()
+    setEditingTask(task)
+    setNewTaskOpen(true)
+    setTaskMenuOpen(null)
+  }
+
+  const handleDeleteClick = (id, e) => {
+    e.stopPropagation()
+    if (window.confirm('¿Estás seguro de eliminar esta tarea?')) {
+      deleteTask(id)
+    }
   }
 
   const getFilteredTasks = () => {
@@ -102,7 +133,12 @@ function TanksPage() {
       {newTaskOpen && (
         <ModalNewTask
           setNewTaskOpen={setNewTaskOpen}
-          addTask={addTask}
+          addTask={editingTask ? editTask : addTask}
+          editingTask={editingTask}
+          onClose={() => {
+            setNewTaskOpen(false)
+            setEditingTask(null)
+          }}
         />
       )}
       <div className={styles.header}>
@@ -118,7 +154,6 @@ function TanksPage() {
         />
       </div>
 
-      {/* Tabs y Filtros */}
       <div className={styles.tabsContainer}>
         <div className={styles.tabsHeader}>
           <div className={styles.tabs}>
@@ -138,8 +173,8 @@ function TanksPage() {
               text={' Completadas'}
             />
           </div>
-          <Button 
-            className={styles.btnFilters} 
+          <Button
+            className={styles.btnFilters}
             onClick={() => setShowFilters(!showFilters)}
             text={'Filtros'}
           />
@@ -148,29 +183,41 @@ function TanksPage() {
         {showFilters && (
           <div className={styles.filtersPanel}>
             <div className={styles.filterGroup}>
-              <label>Prioridad</label>
-              <select
+              <Paragraph
+                text={'Prioridad'}
+                size='medium'
+              />
+              <Select
                 value={filters.priority}
                 onChange={(e) => setFilters({ ...filters, priority: e.target.value })}
-              >
-                <option value="all">Todas</option>
-                <option value="Alta">Alta</option>
-                <option value="Media">Media</option>
-                <option value="Baja">Baja</option>
-              </select>
+                options={[
+                  { value: 'all', label: 'Todas' },
+                  { value: 'Alta', label: 'Alta' },
+                  { value: 'Media', label: 'Media' },
+                  { value: 'Baja', label: 'Baja' }
+                ]}
+                variant='secondary'
+                size='small'
+              />
             </div>
             <div className={styles.filterGroup}>
-              <label>Categoría</label>
-              <select
+              <Paragraph
+                text={'Categoría'}
+                size='medium'
+              />
+              <Select
                 value={filters.category}
                 onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-              >
-                <option value="all">Todas</option>
-                <option value="Trabajo">Trabajo</option>
-                <option value="Personal">Personal</option>
-                <option value="Reuniones">Reuniones</option>
-                <option value="Clientes">Clientes</option>
-              </select>
+                options={[
+                  { value: 'all', label: 'Todas' },
+                  { value: 'Trabajo', label: 'Trabajo' },
+                  { value: 'Personal', label: 'Personal' },
+                  { value: 'Reuniones', label: 'Reuniones' },
+                  { value: 'Clientes', label: 'Clientes' }
+                ]}
+                variant='secondary'
+                size='small'
+              />
             </div>
           </div>
         )}
@@ -181,37 +228,64 @@ function TanksPage() {
         <div className={styles.tasksList}>
           {filteredTasks.length === 0 ? (
             <div className={styles.emptyState}>
-              <p>No hay tareas para mostrar</p>
+              <small>No hay tareas para mostrar</small>
             </div>
           ) : (
             filteredTasks.map(task => (
               <div key={task.id} className={styles.taskCard}>
                 <div className={styles.taskContent}>
-                  <input
-                    type="checkbox"
-                    className={styles.taskCheckbox}
-                    checked={task.completed}
-                    onChange={() => toggleTask(task.id)}
-                  />
-                  <div className={styles.taskInfo}>
-                    <h3 className={`${styles.taskTitle} ${task.completed ? styles.completed : ''}`}>
-                      {task.title}
-                    </h3>
-                    <p className={`${styles.taskDescription} ${task.completed ? styles.completed : ''}`}>
-                      {task.description}
-                    </p>
-                    <div className={styles.taskMeta}>
-                      <span className={styles.taskHour}>🕒 {task.hour}</span>
-                      <span className={styles.taskCategory}>{task.category}</span>
-                      <span className={getPriorityClass(task.priority)}>
-                        {task.priority === 'Alta' && '🔴 '}
-                        {task.priority}
-                      </span>
+                  <div className={styles.contentCard}>
+                    <input
+                      type="checkbox"
+                      className={styles.taskCheckbox}
+                      checked={task.completed}
+                      onChange={() => toggleTask(task.id)}
+                    />
+                    <div className={styles.taskInfo}>
+                      <Title
+                        className={` ${task.completed ? styles.completed : ''}`}
+                        text={task.title}
+                        level='h4'
+                      />
+                      <Paragraph
+                        className={` ${task.completed ? styles.completed : ''}`}
+                        text={task.description}
+                        size='small'
+                      />
+                      <div className={styles.taskMeta}>
+                        <span className={styles.taskHour}> {task.hour}</span>
+                        <span className={styles.taskCategory}>{task.category}</span>
+                        <span className={getPriorityClass(task.priority)}>
+                          {task.priority === 'Alta' && '🔴'}
+                          {task.priority}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <span className={styles.taskMenu} onClick={() => deleteTask(task.id)}>
-                    ⋮
-                  </span>
+
+                  <div className={styles.taskMenuContainer}>
+                    <span
+                      className={styles.taskMenu}
+                      onClick={(e) => handleMenuToggle(task.id, e)}
+                    >
+                    <EllipsisVertical size={16} color='var(--color-blue)'/>
+                    </span>
+                    
+                    {taskMenuOpen === task.id && (
+                      <div className={styles.taskMenuDropdown}>
+                        <Button
+                          variant='secondary'
+                          text={'Editar'}
+                          onClick={(e) => handleEditClick(task, e)}
+                        />
+                        <Button
+                        variant='secondary'
+                          text={'Eliminar'}
+                          onClick={(e) => handleDeleteClick(task.id, e)}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))
@@ -226,21 +300,18 @@ function TanksPage() {
             <h3>Tareas Pendientes</h3>
             <p>{pendingTasks}</p>
           </div>
-          <div className={styles.statIcon}>⏰</div>
         </div>
         <div className={`${styles.statCard} ${styles.completed}`}>
           <div className={styles.statInfo}>
             <h3>Completadas</h3>
             <p>{completedTasks}</p>
           </div>
-          <div className={styles.statIcon}>✓</div>
         </div>
         <div className={`${styles.statCard} ${styles.total}`}>
           <div className={styles.statInfo}>
             <h3>Total</h3>
             <p>{totalTasks}</p>
           </div>
-          <div className={styles.statIcon}>∑</div>
         </div>
       </div>
     </MyTemplate>

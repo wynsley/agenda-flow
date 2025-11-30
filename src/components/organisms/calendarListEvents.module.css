@@ -35,11 +35,11 @@
 
 /* Estilo personalizado para la scrollbar de eventos grid */
 .eventosGrid::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
 }
 
 .eventosGrid::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-blue);
   border-radius: 10px;
 }
 
