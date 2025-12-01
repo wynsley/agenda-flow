@@ -115,32 +115,34 @@ function DashboardPage() {
         </section>
 
         <section className={styles.tareasCard}>
-          <div className={styles.container_tasks}>
-            <div className={styles.tareasCard_title}>
-              <div className={styles.textCard}>
-                <p>Tareas del Día</p>
-                <span className={styles.textCard_options}>
-                  <EllipsisVertical />
-                </span>
+          <div className={styles.container_tasks_reminders}>
+            <div className={styles.container_tasks}>
+              <div className={styles.tareasCard_title}>
+                <div className={styles.textCard}>
+                  <p>Tareas del Día</p>
+                  <span className={styles.textCard_options}>
+                    <EllipsisVertical />
+                  </span>
+                </div>
               </div>
-            </div>
 
-            <div className={styles.listaTareas}>
-              <div className={styles.listas}>
-                {tareas.map((tarea, index) => (
-                  <div key={index} className={styles.tarea}>
-                    <div className={styles.tareas_check}>{tarea.input}</div>
+              <div className={styles.listaTareas}>
+                <div className={styles.listas}>
+                  {tareas.map((tarea, index) => (
+                    <div key={index} className={styles.tarea}>
+                      <div className={styles.tareas_check}>{tarea.input}</div>
 
-                    <div className={styles.info}>
-                      <h4>{tarea.titulo}</h4>
-                      <p>{tarea.mensaje}</p>
+                        <div className={styles.info}>
+                          <h4>{tarea.titulo}</h4>
+                          <p>{tarea.mensaje}</p>
+                        </div>
+
+                      <div className={styles.tareasHora}>
+                        <span>{tarea.hora}</span>
+                      </div>
                     </div>
-
-                    <div className={styles.tareasHora}>
-                      <span>{tarea.hora}</span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -178,7 +180,7 @@ function DashboardPage() {
 
         <section className={styles.container_event}>
           <div className={styles.eventsCard}>
-            <p>Recordatorio</p>
+            <p>Eventos proximos</p>
             <span className={styles.eventsCard_icon}>
               <EllipsisVertical />
             </span>
@@ -192,7 +194,7 @@ function DashboardPage() {
                   <div key={index} className={styles.eventtCard}>
                     <div className={styles.eventIcon}>
                       <Icon />
-                      <span className={styles.eventFecha}>{event.fecha}</span> 
+                      <span className={styles.eventFecha}>{event.fecha}</span>
                     </div>
 
                     <div className={styles.eventInfo}>
@@ -203,7 +205,7 @@ function DashboardPage() {
                   </div>
                 );
               })}
-            </div> 
+            </div>
           </div>
         </section>
       </div>

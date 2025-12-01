@@ -1,0 +1,188 @@
+.home {
+  gap: 2vw;
+  background-color: var(--gray-claro);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+  margin-left: 3rem;
+}
+
+.minTargetContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 3rem;
+  padding-left: 5rem;
+  width: 100%;
+}
+
+.minTarget {
+  border: 1px solid var(--gray);
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 3rem;
+  height: 11vw;
+  width: 18vw;
+  font-size: medium;
+}
+
+.minTarget_icon {
+  color: var(--gray);
+  background-color: var(--gray-medio);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  height: 3vw;
+  width: 3vw;
+}
+
+.minTarget p {
+  font-size: small;
+  color: var(--text3-color);
+  font-size: 2vh;
+}
+
+.minTarget aside {
+  font-size: 2vh;
+}
+
+
+
+.allReminders {
+  margin: 5vh;
+  background-color: var(--white);
+  border-radius: 1rem;
+  margin-left: 3.5vw;
+  border: 1px solid var(--gray);
+}
+
+.allReminders_header {
+  display: flex;
+  margin-top: 4vh;
+  margin-right: 1.5vh;
+  margin-left: 5vh;
+  margin-bottom: 4vh;
+  align-items: center;
+}
+
+.reminderCard {
+  display: flex;
+  border-top: 1px solid var(--gray);
+  padding: 2vh;
+  width: 100%;
+  height: 18vh;
+  align-items: center;
+  gap: 3vh;
+}
+
+.reminderCard_icon {
+  margin-left: 2vh;
+  margin-right: 1vh;
+  background-color: var(--gray-claro);
+  border-radius: 1rem;
+  padding: 0.8rem;
+  height: 7vh;
+  width: 7vh;
+  color: var(--gray);
+}
+
+.reminderCard_text aside {
+  font-size: 1.5rem;
+}
+
+.reminderCard_text p {
+  font-size: 1.3rem;
+  color: var(--text3-color);
+}
+
+.reminderCard_data {
+  display: flex;
+  gap: 2rem;
+}
+
+.reminderCard_data aside {
+  background-color: var(--gray-claro);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  height: 2.5rem;
+  margin-top: 1rem;
+}
+
+.toggleButton {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggleButton.active {
+  background-color: #1a1a1a;
+}
+
+.toggleButton.inactive {
+  background-color: #d1d5db;
+}
+
+.toggleCircle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggleCircle.active {
+  transform: translateX(24px);
+}
+
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+
+
+
+.recordatorioCategoria {
+  margin: 5vh;
+  background-color: var(--white);
+  border-radius: 1rem;
+  margin-left: 3.5vw;
+  border: 1px solid var(--gray);
+}
+
+.recordatorioCategoria_header {
+  padding: 3vh;
+  margin-left: 3vh;
+}
+
+.recordatorioCategoria_container {
+  margin-left: 2vw;
+  margin-right: 2vw;
+  padding: 2vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recordatorioCategoria_card {
+  background-color: var(--gray-claro);
+  width: 12vw;
+  height: 5vw;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1vh;
+}
+
+.recordatorioCategoria_card aside {
+  margin-top: 1.5vh;
+}
