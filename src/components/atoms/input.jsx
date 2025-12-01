@@ -6,12 +6,8 @@ function Input({
   value,
   placeholder,
   onChange,
-  onFocus,
   required,
   disabled,
-  readOnly,
-  autoComplete,
-  pattern,
   className,
   size= 'medium',
   align= 'left',
@@ -29,12 +25,8 @@ function Input({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      onFocus={onFocus}
       required={required}
       disabled={disabled}
-      readOnly={readOnly}
-      autoComplete={autoComplete}
-      pattern={pattern}
       className={`${styles.input} ${sizeClassn} ${alignClassn} ${variantClassn} ${className}`}
       {...props}
     />
