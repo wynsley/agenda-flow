@@ -4,6 +4,7 @@ import { Title } from "../atoms/titles";
 import { MyTemplate } from "../templates/myTemplate";
 import styles from "./settingsPage.module.css";
 import { useState } from "react";
+import { Link } from "../atoms/customLink";
 
 function SettingsPage() {
   const [selectedColor, setSelectedColor] = useState("#111827");
@@ -131,65 +132,22 @@ function SettingsPage() {
     <MyTemplate className={styles.home}>
       <div>
         <div className={styles.header}>
-          <Title level="h3" text="Configuración" align="left" />
+          <div>
+            <Title level="h3" text="Configuración" align="left" />
           <Paragraph
             size="medium"
             align="left"
             text="Personaliza tu experiiencia en tu ordenador"
           />
+          </div>
+          <Link
+          className={styles.linkSettings}
+          text={'Mi perfil'}
+          href='/profile'
+          
+        />
         </div>
-        <section className={styles.profile}>
-          <ul>
-            <li className={styles.profileTitle}>
-              <UserRound
-                size={32}
-                strokeWidth={1.5}
-                className={styles.profileIcon}
-              />
-              <Title level="h4" align="left" text="Perfil de usuario" />
-            </li>
-            <li className={styles.nameInputs}>
-              <aside>
-                <Paragraph size="medium" align="left" text="Nombre" />
-                <div>
-                  <input type="text" placeholder="Juan" />
-                </div>
-              </aside>
-              <aside>
-                <Paragraph size="medium" align="left" text="Apellido" />
-                <div>
-                  <input type="text" placeholder="Pérez" />
-                </div>
-              </aside>
-            </li>
-            <li>
-              <Paragraph size="medium" align="left" text="Email" />
-              <input
-                type="gmail"
-                align="left"
-                placeholder="usuario@email.com"
-              />
-            </li>
-            <li>
-              <Paragraph size="medium" align="left" text="Biografía" />
-              <textarea
-                name="bio"
-                placeholder="Cuentanos sobre ti..."
-              ></textarea>
-            </li>
-            <li>
-              <Paragraph size="medium" align="left" text="Foto de perfil" />
-              <div className={styles.profilePicture}>
-                <UserRound
-                  size={32}
-                  strokeWidth={2}
-                  className={styles.profilePicture_icon}
-                />
-                <span>Cambiar foto</span>
-              </div>
-            </li>
-          </ul>
-        </section>
+        
 
         <section className={styles.apariencia}>
           <div className={styles.aparienciaTitle}>
