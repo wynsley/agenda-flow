@@ -5,25 +5,15 @@ import { Paragraph } from '../atoms/paragraph'
 import { Link } from '../atoms/customLink'
 import { Button } from '../atoms/button'
 import { FormItem } from '../molecules/formItem'
+import { AuthService } from '../../services/authService'
 
-
-function Login({ setModalIsOpen, setModalRegisterOpen }) {
-  const formFields =[
-    {
-      text: 'Usuario',
-      htmlFor: 'user',
-      type: 'text',
-      name:'user',
-    },
-    {
-      text: 'Contraseña',
-      htmlFor: 'password',
-      type: 'password',
-      name:'password',
-    },
-  ]
-
+function Login({ setModalIsOpen, setModalRegisterOpen, onLoginSuccess }) {
   const [isClosing, setIsClosing] = useState(false)
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+  const [error, setError] = useState('')
 
   const handleClose = () => {
     setIsClosing(true)
@@ -32,25 +22,67 @@ function Login({ setModalIsOpen, setModalRegisterOpen }) {
     }, 400)
   }
 
-  // Cerrar al hacer click fuera del modal
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       handleClose()
     }
   }
-  // Evitar que el click dentro del modal cierre el backdrop
+
   const handleModalClick = (e) => {
     e.stopPropagation()
   }
 
   const handleGoToRegister = () => {
-  setIsClosing(true)
-  setTimeout(() => {
-    setModalIsOpen(false)
-    setModalRegisterOpen(true)
-  }, 400)
-}
+    setIsClosing(true)
+    setTimeout(() => {
+      setModalIsOpen(false)
+      setModalRegisterOpen(true)
+    }, 400)
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setError('')
+
+    if (!formData.email || !formData.password) {
+      setError('Todos los campos son requeridos')
+      return
+    }
+
+    try {
+      const user = AuthService.login(formData.email, formData.password)
+      if (onLoginSuccess) onLoginSuccess(user)
+      handleClose()
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const formFields = [
+    {
+      text: 'Usuario',
+      htmlFor: 'email',
+      type: 'email',
+      name: 'email',
+      value: formData.email,
+      onChange: handleChange
+    },
+    {
+      text: 'Contraseña',
+      htmlFor: 'password',
+      type: 'password',
+      name: 'password',
+      value: formData.password,
+      onChange: handleChange
+    }
+  ]
 
   return (
     <>
@@ -62,7 +94,7 @@ function Login({ setModalIsOpen, setModalRegisterOpen }) {
           className={`${styles.containerLogin} ${isClosing ? styles.closing : ''}`}
           onClick={handleModalClick}
         >
-          <form action="" className={styles.form}>
+          <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.containerTitles}>
               <Title level='h3' variant='secondary' align='center'>
                 Login
@@ -71,6 +103,21 @@ function Login({ setModalIsOpen, setModalRegisterOpen }) {
                 Ingresa para continuar con tu sesión segura
               </Paragraph>
             </div>
+
+            {error && (
+              <div style={{
+                padding: '0.75rem',
+                backgroundColor: '#fee2e2',
+                color: '#991b1b',
+                borderRadius: '6px',
+                marginBottom: '1rem',
+                fontSize: '0.875rem',
+                textAlign: 'center'
+              }}>
+                {error}
+              </div>
+            )}
+
             <FormItem
               formFields={formFields}
               inputVariant="primary"

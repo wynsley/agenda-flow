@@ -33,11 +33,6 @@ function NavMenu() {
       icon: <AlarmClock/>
     },
     {
-      text: 'Estadísticas',
-      href:'/statistics',
-      icon: <BarChart3/>
-    },
-    {
       text: 'Configuración',
       href:'/settings',
       icon: <Settings/>
