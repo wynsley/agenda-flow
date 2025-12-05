@@ -2,6 +2,7 @@ import { Bell, Calendar, Clock, EllipsisVertical } from "lucide-react";
 import { MyTemplate } from "../templates/myTemplate";
 import styles from "./dashboardPage.module.css";
 import { Paragraph } from "../atoms/paragraph";
+import { Title } from "../atoms/titles";
 
 function DashboardPage() {
   // Lista de resumenes
@@ -89,30 +90,36 @@ function DashboardPage() {
       parrafo: "En la sala de conferencias",
     },
   ];
-
+  const title = 'Bienbenido de nuevo'
   return (
     // Primer apartado
     <MyTemplate className={styles.home}>
       <div className={styles.scrollContent}>
-        <h2> Bienbenido de nuevo</h2>
-        <Paragraph size="large" className={styles.titleForm}>
-          Aqui esta tu resumen del dia
-        </Paragraph>
-
-        <section className={styles.cards}>
-          {stats.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div className={styles.card}>
-                <div className={styles.info_card}>
-                  <Icon className={styles.icon} />
-                  <aside>{item.value}</aside>
+        <div className={styles.containerTitles}>
+          <div>
+            <Title
+              text={title}
+              level="h3"
+            />
+            <Paragraph
+              text={'Aqui esta tu resumen del dia'}
+              size="medium" className={styles.titleForm} />
+          </div>
+          <section className={styles.cards}>
+            {stats.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div className={styles.card}>
+                  <div className={styles.info_card}>
+                    <Icon className={styles.icon} />
+                    <aside>{item.value}</aside>
+                  </div>
+                  <p>{item.label}</p>
                 </div>
-                <p>{item.label}</p>
-              </div>
-            );
-          })}
-        </section>
+              );
+            })}
+          </section>
+        </div>
 
         <section className={styles.tareasCard}>
           <div className={styles.container_tasks_reminders}>
@@ -132,10 +139,10 @@ function DashboardPage() {
                     <div key={index} className={styles.tarea}>
                       <div className={styles.tareas_check}>{tarea.input}</div>
 
-                        <div className={styles.info}>
-                          <h4>{tarea.titulo}</h4>
-                          <p>{tarea.mensaje}</p>
-                        </div>
+                      <div className={styles.info}>
+                        <h4>{tarea.titulo}</h4>
+                        <p>{tarea.mensaje}</p>
+                      </div>
 
                       <div className={styles.tareasHora}>
                         <span>{tarea.hora}</span>
