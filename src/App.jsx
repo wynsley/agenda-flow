@@ -1,7 +1,7 @@
 import { Header } from './components/organisms/header'
 import { Navbar } from './components/organisms/navbar'
 import { MyTemplate } from './components/templates/myTemplate'
-import { Routes, Route} from 'react-router'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 //PAGES
 import { DashboardPage } from './components/pages/dashboardPage'
 import { TanksPage } from './components/pages/tanksPage'
@@ -14,71 +14,132 @@ import { ProfilePage } from './components/pages/profilePage'
 import { Register } from './components/organisms/modaRegister'
 import { Login } from './components/organisms/modalLogin'
 import { Notifications } from './components/organisms/modalNotifications'
+import { AuthService } from './services/authService'
 
 //STYLES
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
-  const [modalIsOpen, setModalIsOpen]= useState (false)
-  const [ notifyOpen , setNotifyOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [notifyOpen, setNotifyOpen] = useState(false)
   const [modalRegisterOpen, setModalRegisterOpen] = useState(false)
-  const [navOpen, setNavOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
+  const navigate = useNavigate()
 
-  const pages =[
+  // Cargar usuario al iniciar la app
+  useEffect(() => {
+    const user = AuthService.getCurrentUser()
+    if (user) {
+      setCurrentUser(user)
+    }
+  }, [])
+
+  // Callback cuando se hace login exitoso
+  const handleLoginSuccess = (user) => {
+    setCurrentUser(user)
+    setModalIsOpen(false)
+  }
+
+  // Callback cuando se hace registro exitoso
+  const handleRegisterSuccess = (user) => {
+    setCurrentUser(user)
+    setModalRegisterOpen(false)
+  }
+
+  // Callback para cerrar sesión
+  const handleLogout = () => {
+    AuthService.logout()
+    setCurrentUser(null)
+    navigate('/')
+  }
+
+  // Callback para actualizar usuario
+  const handleUpdateUser = (updatedUser) => {
+    setCurrentUser(updatedUser)
+  }
+
+  const pages = [
     {
-      element: DashboardPage,
+      component: DashboardPage,
       path: '/'
     },
     {
-      element:TanksPage ,
+      component: TanksPage,
       path: '/tanks'
     },
     {
-      element: CalendarPage,
+      component: CalendarPage,
       path: '/calendar'
     },
     {
-      element:RemindersPage ,
+      component: RemindersPage,
       path: '/reminders'
     },
     {
-      element:StatisticsPage ,
+      component: StatisticsPage,
       path: '/statistics'
     },
     {
-      element:SettingsPage ,
+      component: SettingsPage,
       path: '/settings'
     },
     {
-      element: HelpPage,
+      component: HelpPage,
       path: '/help'
-    },
-    {
-      element: ProfilePage,
-      path: '/profile'
-    },
+    }
   ]
 
   return (
     <div className='layout'>
-      <Navbar navOpen={navOpen} setNavOpen={setNavOpen}/>
-      <Header setNavOpen={setNavOpen} setModalIsOpen={setModalIsOpen} setNotifyOpen={setNotifyOpen}/>
-      {modalIsOpen ? <Login setModalIsOpen={setModalIsOpen} setModalRegisterOpen={setModalRegisterOpen} /> : ''}
+      <Navbar
+        navOpen={navOpen}
+        currentUser={currentUser}
+        setNavOpen={setNavOpen} />
+      <Header
+        setNavOpen={setNavOpen}
+        setModalIsOpen={setModalIsOpen}
+        setNotifyOpen={setNotifyOpen}
+        currentUser={currentUser}   
+      />
+
+      {modalIsOpen ? (
+        <Login
+          setModalIsOpen={setModalIsOpen}
+          setModalRegisterOpen={setModalRegisterOpen}
+          onLoginSuccess={handleLoginSuccess}
+        />
+      ) : ''}
       {notifyOpen ? <Notifications setNotifyOpen={setNotifyOpen} /> : ''}
-      {modalRegisterOpen? <Register setModalRegisterOpen={setModalRegisterOpen}/> : ''}
+      {modalRegisterOpen ? (
+        <Register
+          setModalRegisterOpen={setModalRegisterOpen}
+          setModalIsOpen={setModalIsOpen}
+          onRegisterSuccess={handleRegisterSuccess}
+        />
+      ) : ''}
       <MyTemplate>
         <Routes>
-          {
-            pages.map((page)=>{
-              return(
-                <Route
-                  path={page.path}
-                  element={<page.element />}
-                />
-              )
-            })
-          }
+          {pages.map((page, index) => {
+            return (
+              <Route
+                key={index}
+                path={page.path}
+                Component={page.component}
+              />
+            )
+          })}
+          <Route
+            path="/profile"
+            element={
+              <ProfilePage
+                currentUser={currentUser}
+                onUpdateUser={handleUpdateUser}
+                onLogout={handleLogout}
+              />
+            }
+          />
         </Routes>
       </MyTemplate>
     </div>
